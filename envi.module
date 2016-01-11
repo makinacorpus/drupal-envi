@@ -1,0 +1,25 @@
+<?php
+/**
+ * @file
+ * Envi module.
+ */
+
+/**
+ * Implements hook_boot().
+ */
+function envi_boot() {
+  if ($env = variable_get('current_env')) {
+    define('ENVI_ENV', $env);
+  } else {
+    define('ENVI_ENV', '(unknown)');
+  }
+}
+
+/**
+ * Implements hook_mail_alter().
+ */
+function envi_mail_alter(&$message) {
+  if (variable_get('envi_mail_trace_header', true)) {
+    $message['headers']['X-Drupal-Environment'] = ENVI_ENV;
+  }
+}

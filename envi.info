@@ -1,0 +1,4 @@
+name = Environment indicator
+description = Makes Drupal aware of the environment you're on and alter a few things to remind you where you stand.
+core = 7.x
+package = Utility
